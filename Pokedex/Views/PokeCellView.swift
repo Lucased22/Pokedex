@@ -6,18 +6,22 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PokeCellView: View {
+   
+    let pokemon: Pokemon
+    let viewModel: PokemonViewModel
     var body: some View {
         ZStack{
             VStack(alignment: .leading){
-                Text("bulbassar")
+                Text(pokemon.name.capitalized)
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding(.top,8)
                     .padding(.leading)
                 HStack{
-                    Text("Poison")
+                    Text(pokemon.type.capitalized)
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding(.horizontal,16)
@@ -27,7 +31,7 @@ struct PokeCellView: View {
                                 .fill(Color.white.opacity(0.2))
                         }
                         .frame(width: 100, height: 24)
-                    Image("bulba")
+                    KFImage(URL(string: pokemon.imageUrl))
                         .resizable()
                         .scaledToFit()
                         .frame(width: 68, height: 68)
@@ -36,13 +40,9 @@ struct PokeCellView: View {
             }
             
         }
-        .background(Color.green)
+        .background(Color(viewModel.backgroundColor(forType: pokemon.type)))
         .cornerRadius(12)
     }
 }
 
-struct PokeCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        PokeCellView()
-    }
-}
+
