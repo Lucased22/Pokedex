@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol PokemonServiceProtocol {
+    func getPokemon(completionHandler: @escaping ([Pokemon]?) -> Void)
+}
